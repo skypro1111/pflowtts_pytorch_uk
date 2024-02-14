@@ -1,0 +1,21 @@
+_target_: pflow.data.text_mel_datamodule.TextMelDataModule
+name: elevenlabs
+train_filelist_path: ${paths.root_dir}/datasets/elevenlabs_dataset/filelists/ljs_audio_text_train_filelist.txt
+valid_filelist_path: ${paths.root_dir}/datasets/elevenlabs_dataset/filelists/ljs_audio_text_val_filelist.txt
+batch_size: 48
+num_workers: 4
+pin_memory: False
+cleaners: [ukrainian_cleaners]
+add_blank: True
+n_spks: 1
+n_fft: 1024
+n_feats: 80
+sample_rate: 22050
+hop_length: 256
+win_length: 1024
+f_min: 0
+f_max: 8000
+data_statistics:  # Computed for elevenlabs dataset
+  mel_mean: -4.698073863983154
+  mel_std: 1.8258213996887207
+seed: ${seed}

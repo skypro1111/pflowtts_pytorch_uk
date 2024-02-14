@@ -1,0 +1,22 @@
+_target_: pflow.data.text_mel_datamodule.TextMelDataModule
+name: ljspeech
+train_filelist_path: //home/skravchenko/dev/pflowtts/pflowtts_pytorch/datasets/elevenlabs_dataset/filelists/ljs_audio_text_train_filelist.txt
+valid_filelist_path: //home/skravchenko/dev/pflowtts/pflowtts_pytorch/datasets/elevenlabs_dataset/filelists/ljs_audio_text_val_filelist.txt
+batch_size: 13
+num_workers: 30
+pin_memory: False
+cleaners: [ukrainian_cleaners]
+#cleaners: [english_cleaners2]
+add_blank: True
+n_spks: 1
+n_fft: 1024
+n_feats: 80
+sample_rate: 22050
+hop_length: 256
+win_length: 1024
+f_min: 0
+f_max: 8000
+data_statistics:  # Computed for ljspeech dataset
+  mel_mean: -5.355673789978027
+  mel_std: 2.7227869033813477
+seed: ${seed}
