@@ -197,10 +197,10 @@ class pflowTTS(BaseLightningClass):  #
             prev_device = neg_cent.device
             attn_mask.to('cpu')
             neg_cent.to('cpu')
-            # attn = (
-            #     maximum_path(neg_cent, attn_mask.squeeze(1)).unsqueeze(1).detach()
-            # )
-            attn = (maximum_path_py(neg_cent, attn_mask.squeeze(1)).unsqueeze(1).detach())
+            attn = (
+                maximum_path(neg_cent, attn_mask.squeeze(1)).unsqueeze(1).detach()
+            )
+            # attn = (maximum_path_py(neg_cent, attn_mask.squeeze(1)).unsqueeze(1).detach())
             attn.to(prev_device)
 
         logw_ = torch.log(1e-8 + attn.sum(2)) * x_mask

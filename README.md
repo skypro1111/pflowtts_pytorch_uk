@@ -27,6 +27,11 @@ pip install -r requirements.txt
 ```bash
 python setup.py build_ext --inplace
 ```
+Instead of use Cython version of MAS, you can use JIT version (it's slower). For this you should uncomment 
+```python
+attn = (maximum_path_py(neg_cent, attn_mask.squeeze(1)).unsqueeze(1).detach())
+```
+in pflow/models/pflow_tts.py forward method.
 
 ## Usage
 
