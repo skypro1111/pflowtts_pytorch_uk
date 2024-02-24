@@ -8,3 +8,4 @@ build
 pflow/utils/monotonic_align/*.pyd
 datasets
 logs
+last_ckpt.py
