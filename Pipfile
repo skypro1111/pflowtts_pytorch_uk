@@ -40,6 +40,7 @@ ukrainian-word-stress = "*"
 text2phonemesequence = "*"
 num2words = {git = "git+https://github.com/patriotyk/num2words.git#egg=num2words"}
 ipa-uk = {ref = "v2.0", git = "git+https://github.com/skypro1111/ipa-uk.git"}
+numba = "*"
 
 [dev-packages]
 

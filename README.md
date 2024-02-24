@@ -35,8 +35,9 @@ python setup.py build_ext --inplace
 To train a model with elevenlabs_dataset use the following command:
 1. Generate normalisation statistics with the yaml file of dataset configuration:
 ```bash
-cd pflowtts_pytorch_uk/pflow/utils
-python generate_data_statistics.py -i elevenlabs.yaml
+cd pflowtts_pytorch_uk
+export PROJECT_ROOT=.
+python pflow/utils/generate_data_statistics.py -i elevenlabs.yaml
 # Output:
 #{'mel_mean': -4.698073863983154, 'mel_std': 1.8258213996887207}
 ```

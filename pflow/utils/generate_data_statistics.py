@@ -86,19 +86,22 @@ def main():
         print("File already exists. Use -f to force overwrite")
         sys.exit(1)
 
+    root_path = rootutils.find_root(search_from=__file__, indicator=".project-root")
     with initialize(version_base="1.3", config_path="../../configs/data"):
         cfg = compose(config_name=args.input_config, return_hydra_config=True, overrides=[])
 
-    root_path = rootutils.find_root(search_from=__file__, indicator=".project-root")
 
     with open_dict(cfg):
         del cfg["hydra"]
         del cfg["_target_"]
+        # cfg["train_filelist_path"] = str(cfg["train_filelist_path"]).replace("${oc.env:PROJECT_ROOT}/", "")
+        # cfg["valid_filelist_path"] = str(cfg["valid_filelist_path"]).replace("${oc.env:PROJECT_ROOT}/", "")
         cfg["data_statistics"] = None
         cfg["seed"] = 1234
         cfg["batch_size"] = args.batch_size
-        cfg["train_filelist_path"] = str(os.path.join(root_path, cfg["train_filelist_path"]))
-        cfg["valid_filelist_path"] = str(os.path.join(root_path, cfg["valid_filelist_path"]))
+        # cfg["train_filelist_path"] = str(os.path.join(root_path, cfg["train_filelist_path"]))
+        # cfg["valid_filelist_path"] = str(os.path.join(root_path, cfg["valid_filelist_path"]))
+
 
     text_mel_datamodule = TextMelDataModule(**cfg)
     text_mel_datamodule.setup()

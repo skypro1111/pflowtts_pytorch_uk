@@ -126,7 +126,7 @@ class BaseLightningClass(LightningModule, ABC):
             logger=True,
             sync_dist=True,
         )
-        
+
         total_loss = sum(loss_dict.values())
         self.log(
             "loss/train",

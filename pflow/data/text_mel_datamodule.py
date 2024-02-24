@@ -172,7 +172,7 @@ class TextMelDataset(torch.utils.data.Dataset):
         mel, audio = self.get_mel(filepath)
         # TODO: make dictionary to get different spec for same speaker
         # right now naively repeating target mel for testing purposes
-        return {"x": text, "y": mel, "spk": spk, "wav":audio}
+        return {"x": text, "y": mel, "spk": spk, "wav": audio}
 
     def get_mel(self, filepath):
         audio, sr = ta.load(filepath)
@@ -200,13 +200,13 @@ class TextMelDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, index):
         datapoint = self.get_datapoint(self.filepaths_and_text[index])
-        if datapoint["wav"].shape[1] <= 66150:
-            ''' 
-            skip datapoint if too short (3s) 
-            TODO To not waste data, we can concatenate wavs less than 3s and use them
-            TODO as a hyperparameter; multispeaker dataset can use another wav of same speaker
-            '''
-            return self.__getitem__(random.randint(0, len(self.filepaths_and_text)-1))
+        # if datapoint["wav"].shape[1] <= 66150:
+        #     '''
+        #     skip datapoint if too short (3s)
+        #     TODO To not waste data, we can concatenate wavs less than 3s and use them
+        #     TODO as a hyperparameter; multispeaker dataset can use another wav of same speaker
+        #     '''
+        #     return self.__getitem__(random.randint(0, len(self.filepaths_and_text)-1))
         return datapoint
 
     def __len__(self):
@@ -258,11 +258,11 @@ class TextMelBatchCollate:
             spks = spks.cpu()
 
         return {
-            "x": x, 
-            "x_lengths": x_lengths, 
-            "y": y, 
-            "y_lengths": y_lengths, 
-            "spks": spks, 
+            "x": x,
+            "x_lengths": x_lengths,
+            "y": y,
+            "y_lengths": y_lengths,
+            "spks": spks,
             "wav": wav,
             "wav_lengths":wav_lengths,
             "prompt_spec": y,
