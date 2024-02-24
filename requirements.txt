@@ -48,3 +48,4 @@ ukrainian-word-stress
 text2phonemesequence
 git+https://github.com/patriotyk/num2words.git#egg=num2words
 git+https://github.com/skypro1111/ipa-uk.git@v2.0
+numba
